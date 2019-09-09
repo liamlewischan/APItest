@@ -1,7 +1,7 @@
 package com.qa.controllers;
 
-import com.qa.models.Note;
-import com.qa.repository.NotesRepository;
+import com.qa.models.Load;
+import com.qa.repository.LoadoutsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,26 +12,26 @@ import java.util.List;
 public class LoadController {
 
     @Autowired
-    private NotesRepository repository;
+    private LoadoutsRepository repository;
 
-    @RequestMapping(value = "notes", method = RequestMethod.GET)
-    public List<Note> listAllNotes() {
+    @RequestMapping(value = "LOs", method = RequestMethod.GET)
+    public List<Load> listAllLOs() {
         return repository.findAll();
     }
 
-    @RequestMapping(value = "notes", method = RequestMethod.POST)
-    public Note addNote(@RequestBody Note note) {
+    @RequestMapping(value = "LOs", method = RequestMethod.POST)
+    public Load addLoad(@RequestBody Load note) {
         return repository.saveAndFlush(note);
     }
 
-    @RequestMapping(value = "notes/{id}", method = RequestMethod.GET)
-    public Note getNote(@PathVariable Long id){
+    @RequestMapping(value = "LOs/{id}", method = RequestMethod.GET)
+    public Load getLoad(@PathVariable Long id){
         return repository.findOne(id);
     }
 
-    @RequestMapping(value = "notes/{id}", method = RequestMethod.DELETE)
-    public Note deleteNote(@PathVariable Long id) {
-        Note existing = repository.findOne(id);
+    @RequestMapping(value = "LOs/{id}", method = RequestMethod.DELETE)
+    public Load deleteLoad(@PathVariable Long id) {
+        Load existing = repository.findOne(id);
         repository.delete(existing);
         return existing;
     }
